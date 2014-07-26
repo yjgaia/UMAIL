@@ -10,6 +10,9 @@ global.PACKER = function() {'use strict';
 	//IMPORT: path
 	path = require('path'),
 
+	// UPPERCASE.IO path
+	UPPERCASE_IO_PATH = process.env['UPPERCASE_IO_PATH'],
+
 	// root path
 	rootPath = __dirname,
 
@@ -242,34 +245,25 @@ global.PACKER = function() {'use strict';
 	// minify
 	minify = function() {
 
-		var
-		// uglify-js
-		uglifyJS = require(rootPath + '/UPPERCASE.IO/SERVER/node_modules/uglify-js');
-
 		// minify browser script.
-		browserScript = uglifyJS.minify(browserScript, {
-			fromString : true,
-			mangle : true
-		}).code;
+		browserScript = MINIFY_JS(browserScript);
 
 		// minify secured browser script.
-		securedBrowserScript = uglifyJS.minify(securedBrowserScript, {
-			fromString : true,
-			mangle : true
-		}).code;
+		securedBrowserScript = MINIFY_JS(securedBrowserScript);
 
 		// minify common script.
-		commonScript = uglifyJS.minify(commonScript, {
-			fromString : true,
-			mangle : true
-		}).code;
+		commonScript = MINIFY_CSS(commonScript);
 
 		// minify server script.
-		serverScript = uglifyJS.minify(serverScript, {
-			fromString : true,
-			mangle : true
-		}).code;
+		serverScript = MINIFY_CSS(serverScript);
 	};
+
+	// load UPPERCASE.JS.
+	require(UPPERCASE_IO_PATH + '/UPPERCASE.JS-COMMON.js');
+	require(UPPERCASE_IO_PATH + '/UPPERCASE.JS-NODE.js');
+	
+	// load UPPERCASE.IO-UTIL.
+	require(UPPERCASE_IO_PATH + '/UPPERCASE.IO-UTIL/NODE.js');
 
 	// pack box.
 	log('PACKING BOX [' + boxName + ']...');
