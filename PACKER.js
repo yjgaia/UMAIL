@@ -132,7 +132,7 @@ global.PACKER = function() {'use strict';
 		//REQUIRED: func
 
 		fs.readdirSync(boxName).forEach(function(name) {
-			if (name[0] !== '.' && name !== 'BROWSER' && name !== 'BROWSER_SECURED' && name !== 'COMMON' && name !== 'SERVER') {
+			if (name[0] !== '.' && name !== 'BROWSER' && name !== 'BROWSER_SECURED' && name !== 'COMMON' && name !== 'NODE') {
 				func(boxName + '/' + name);
 			}
 		});
@@ -252,10 +252,10 @@ global.PACKER = function() {'use strict';
 		securedBrowserScript = MINIFY_JS(securedBrowserScript);
 
 		// minify common script.
-		commonScript = MINIFY_CSS(commonScript);
+		commonScript = MINIFY_JS(commonScript);
 
 		// minify server script.
-		serverScript = MINIFY_CSS(serverScript);
+		serverScript = MINIFY_JS(serverScript);
 	};
 
 	// load UPPERCASE.JS.
@@ -292,9 +292,9 @@ global.PACKER = function() {'use strict';
 	log('LOADED FOR COMMON!');
 
 	// load for server.
-	log('LOADING FOR SERVER...');
-	scanFolder(boxName + '/SERVER', loadForServer);
-	log('LOADED FOR SERVER!');
+	log('LOADING FOR NODE...');
+	scanFolder(boxName + '/NODE', loadForServer);
+	log('LOADED FOR NODE!');
 
 	log('LOADED BOX!');
 
@@ -335,19 +335,19 @@ global.PACKER = function() {'use strict';
 
 	// save server script.
 	if (serverScript !== '') {
-		log('SAVING SERVER SCRIPT...');
-		fs.mkdirSync('__PACK/' + boxName + '/SERVER');
-		write('__PACK/' + boxName + '/SERVER/SERVER.js', serverScript);
-		log('SAVED SERVER SCRIPT!');
+		log('SAVING NODE SCRIPT...');
+		fs.mkdirSync('__PACK/' + boxName + '/NODE');
+		write('__PACK/' + boxName + '/NODE/NODE.js', serverScript);
+		log('SAVED NODE SCRIPT!');
 	}
 
 	// save node module.
-	if (fs.existsSync(boxName + '/SERVER/node_modules') === true) {
+	if (fs.existsSync(boxName + '/NODE/node_modules') === true) {
 		log('SAVING NODE MODULES...');
-		if (fs.existsSync('__PACK/' + boxName + '/SERVER') === false) {
-			fs.mkdirSync('__PACK/' + boxName + '/SERVER');
+		if (fs.existsSync('__PACK/' + boxName + '/NODE') === false) {
+			fs.mkdirSync('__PACK/' + boxName + '/NODE');
 		}
-		copy(boxName + '/SERVER/node_modules', '__PACK/' + boxName + '/SERVER/node_modules');
+		copy(boxName + '/NODE/node_modules', '__PACK/' + boxName + '/NODE/node_modules');
 		log('SAVED NODE MODULES!');
 	}
 
