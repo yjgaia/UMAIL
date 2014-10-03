@@ -3,7 +3,8 @@
  */
 UMAIL.CONNECT_TO_MAIL_SERVER = METHOD({
 
-	run : function(params, connectionListener) {'use strict';
+	run : function(params, connectionListener) {
+		'use strict';
 		//REQUIRED: params
 		//REQUIRED: params.host
 		//REQUIRED: params.port
@@ -53,6 +54,7 @@ UMAIL.CONNECT_TO_MAIL_SERVER = METHOD({
 			//OPTIONAL: params.receiverAddresses
 			//OPTIONAL: params.title
 			//OPTIONAL: params.content
+			//OPTIONAL: params.html
 
 			var
 			// sender name
@@ -71,7 +73,10 @@ UMAIL.CONNECT_TO_MAIL_SERVER = METHOD({
 			title = params.title,
 
 			// content
-			content = params.content;
+			content = params.content,
+
+			// html
+			html = params.html;
 
 			// send mail with defined transport object.
 			smtpTransport.sendMail({
@@ -97,7 +102,10 @@ UMAIL.CONNECT_TO_MAIL_SERVER = METHOD({
 				subject : title,
 
 				// plaintext body
-				text : content
+				text : content,
+
+				// html body
+				html : html
 
 			}, function(error, response) {
 
