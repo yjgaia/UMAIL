@@ -33,10 +33,10 @@ UMAIL.CONNECT_TO_MAIL_SERVER = METHOD({
 		password = params.password,
 
 		// create reusable transport method. (opens pool of SMTP connections.)
-		smtpTransport = nodemailer.createTransport('SMTP', {
+		smtpTransport = nodemailer.createTransport({
 			host : host,
 			port : port,
-			secureConnection : isSecure,
+			secure : isSecure,
 			auth : {
 				user : username,
 				pass : password
@@ -110,7 +110,7 @@ UMAIL.CONNECT_TO_MAIL_SERVER = METHOD({
 			}, function(error, response) {
 
 				if (error !== TO_DELETE) {
-					console.log('[UPPERCASE.IO-CONNECT_TO_MAIL_SERVER] SEND MAIL ERROR:', error);
+					console.log('[UPPERCASE-CONNECT_TO_MAIL_SERVER] SEND MAIL ERROR:', error);
 				}
 			});
 		});
