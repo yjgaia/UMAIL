@@ -28,6 +28,9 @@ Gmail 사용 시 외부 애플리케이션에서 사용할 수 있도록 이하 
 
 https://www.google.com/settings/security/lesssecureapps
 
+## 윈도우에서 테스트 시 Avast 안티바이러스 프로그램이 켜져있으면 종료합니다.
+Avast 안티바이러스 프로그램이 임의 메일 전송을 차단하기 때문에, 프로그램을 종료하시거나 감시 제어를 사용하지 않음으로 설정하여야 합니다.
+
 ## 라이센스
 [MIT](LICENSE)
 
