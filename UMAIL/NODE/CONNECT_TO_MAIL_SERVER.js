@@ -82,9 +82,9 @@ UMAIL.CONNECT_TO_MAIL_SERVER = METHOD((m) => {
 					html : html
 	
 				}, (error, response) => {
-	
+					
 					if (error !== TO_DELETE) {
-						SHOW_ERROR('UPPERCASE-CONNECT_TO_MAIL_SERVER', 'SEND MAIL ERROR', error);
+						SHOW_ERROR('UMAIL', 'SEND MAIL ERROR', error);
 					}
 				});
 			});

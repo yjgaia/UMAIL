@@ -10,7 +10,7 @@ UMAIL.CONNECT_TO_MAIL_SERVER({
 	isSecure : true,
 	username : 'sender@hanul.me',
 	password : 'ENTER YOUR PASSWORD'
-}, function(sendMail) {
+}, (sendMail) => {
 
 	// 메일을 보냅니다.
 	sendMail({
