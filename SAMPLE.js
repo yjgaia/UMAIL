@@ -16,7 +16,7 @@ UMAIL.CONNECT_TO_MAIL_SERVER({
 	isSecure : true,
 	username : 'sender@hanul.me',
 	password : 'ENTER YOUR PASSWORD'
-}, function(sendMail) {
+}, (sendMail) => {
 
 	sendMail({
 		senderName : 'BTNcafe Contact',
